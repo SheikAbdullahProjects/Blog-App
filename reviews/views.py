@@ -23,8 +23,8 @@ async def get_reviews(db : db_dependency, token : str, id : int = Path(ge=1)):
     blog = await get_blog_by_id(db , id)
     reviews = await get_all_reviews(db, blog)
     return reviews
-@router.get("/all/{blog_id}/review/{review_id}", status_code=status.HTTP_200_OK, response_model=ReviewResponse)
-async def get_reviews(db : db_dependency, token : str, blog_id : int = Path(ge=1), review_id : int = Path(ge=1)):
+@router.get("/{blog_id}/review/{review_id}", status_code=status.HTTP_200_OK, response_model=ReviewResponse)
+async def get_review_by_id(db : db_dependency, token : str, blog_id : int = Path(ge=1), review_id : int = Path(ge=1)):
     user = await get_current_user(token, db)
     blog = await get_blog_by_id(db , blog_id)
     review = await get_review_by_id(db, blog, review_id)

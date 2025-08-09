@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 
 
@@ -18,6 +18,6 @@ class BlogResponse(BlogPostCreate):
     created_at: datetime = Field(..., title="Creation timestamp of the blog post")
     updated_at: datetime = Field(..., title="Last update timestamp of the blog post")
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
+
     
